@@ -18,7 +18,9 @@ void insert(struct Trie **ppTrie, char *word) {
             return;
         }
         pTrie->count = 0;
-        memset(pTrie->children, 0, sizeof(pTrie->children));
+        for (int i = 0; i < 26; i++) {
+            pTrie->children[i] = NULL;
+        }
         *ppTrie = pTrie;
     }
     for (int i = 0; i < strlen(word); i++) {
@@ -29,7 +31,9 @@ void insert(struct Trie **ppTrie, char *word) {
                 return;
             }
             newTrie->count = 0;
-            memset(newTrie->children, 0, sizeof(newTrie->children));
+            for (int j = 0; j < 26; j++) {
+                newTrie->children[j] = NULL;
+            }
             pTrie->children[index] = newTrie;
         }
         pTrie = pTrie->children[index];
